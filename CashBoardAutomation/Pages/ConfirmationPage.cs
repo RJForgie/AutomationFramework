@@ -19,5 +19,10 @@ namespace CashBoardAutomation
                 return false;
             }
         }
+
+        public static void ReturnToAllTransactions()
+        {
+            Driver.Instance.FindElement(By.ClassName("button")).Click();
+        }
     }
 }
