@@ -16,6 +16,8 @@ namespace CashBoardAutomation
         {
             Instance = new ChromeDriver();
             Instance.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
+            Instance.Manage().Window.Maximize();
+
         }
 
         public static void Close()

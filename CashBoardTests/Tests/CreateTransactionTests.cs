@@ -21,6 +21,10 @@ namespace CashBoardTests
             NewTransactionPage.GoTo();
             NewTransactionPage.CreateTransaction(13.58m).Submit();
             Assert.IsTrue(ConfirmationPage.IsAt, "Failed to create transaction");
+
+            //Cleanup
+            ConfirmationPage.ReturnToAllTransactions();
+            AllTransactionsPage.DeleteLastTransaction();
         }
 
         [TestMethod]
@@ -33,6 +37,8 @@ namespace CashBoardTests
             ConfirmationPage.ReturnToAllTransactions();
 
             Assert.AreEqual(AllTransactionsPage.PrevTransactionCount + 1, AllTransactionsPage.CurrentTransactionCount, "Incorrect transaction count");
+
+            //Cleanup
             AllTransactionsPage.DeleteLastTransaction();
         }
     }

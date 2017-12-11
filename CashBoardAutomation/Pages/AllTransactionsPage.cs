@@ -1,6 +1,7 @@
 ﻿using CashBoardAutomation.Pages;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Interactions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -52,14 +53,13 @@ namespace CashBoardAutomation
 
         public static void DeleteLastTransaction()
         {
-            //var tableRow = Driver.Instance.FindElement(By.XPath($"(//*[class='newtable'])[{CurrentTransactionCount}]"));
-            //var tableCell = tableRow.FindElement(By.XPath("//td[]:)"));
-            //*[@id="main-content"]/div/table/tbody/tr[18]/td[7]
+            System.Threading.Thread.Sleep(2000);
             var lastTransactionIndex = CurrentTransactionCount;
-            var tableCell = Driver.Instance.FindElement(By.CssSelector("//.newtable tbody tr:nth-child(1) td:nth-child(7)"));
-            tableCell.FindElement(By.ClassName("input#button")).Click();
-            
-
+            var tableCell = Driver.Instance.FindElement(By.CssSelector($".newtable tr:nth-child({lastTransactionIndex}) td:nth-child(7) .button"));
+            Actions actions = new Actions(Driver.Instance);
+            actions.MoveToElement(tableCell);
+            System.Threading.Thread.Sleep(2000);
+            tableCell.Click();
         }
     }
 }
